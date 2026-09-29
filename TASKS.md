@@ -1,64 +1,47 @@
-# TASKS.md
+# Implementation Backlog
 
-Implementation backlog.
+## Phase 0 — Research
 
-Keep this file focused on actionable work. Keep completed task status here; decision rationale belongs in `DECISIONS.md` and the current handoff belongs in `PLANNER.md`.
+- [x] **RESEARCH-01 — Establish an evidence-bounded data foundation**
+  - Outcome: maintainers can decide what the first trustworthy product may calculate/show.
+  - Acceptance: primary-source inventory covers access, level, identity, cadence/history, reuse, missingness, caveats, ingestion; identity model and `score_v1` proposal are reproducible; unknowns stay explicit.
+  - Verification: source links/tested API notes, `git diff --check`, placeholder/stale-name search.
+  - Dependencies: none.
+- [ ] **RESEARCH-02 — Run a reproducible national coverage audit**
+  - Outcome: quantified joins/availability replace assumptions.
+  - Acceptance: pin/checksum national artifacts; profile joins, years, suppression, samples, grade applicability, coverage; inspect a stratified mismatch sample; confirm commercial reuse terms.
+  - Verification: tested audit script and dated generated summary; rerun is reproducible.
+  - Dependencies: RESEARCH-01.
+  - Status: technical audit complete in `docs/research/coverage-audit-2026-09-29.md`; verification remains incomplete until Skolenkäten commercial reuse terms and a supported bulk SALSA path (or an explicit decision to exclude it) are resolved.
+- [ ] **RESEARCH-03 — Validate score fairness and comprehension**
+  - Outcome: evidence supports publishing, revising, or withholding a composite score.
+  - Acceptance: sensitivity covers weights/cohorts, small schools, missingness, with/without SALSA; fairness review measures rank movement; 5–8 parent sessions apply the `PRODUCT.md` threshold.
+  - Verification: versioned analysis and anonymized study summary.
+  - Dependencies: RESEARCH-02.
+  - Status: quantitative diagnostic complete in `docs/research/score-sensitivity-2026-09-29.md`; it found material weight sensitivity, socioeconomic association, and uneven eligibility. Still incomplete pending statistician review, SALSA inclusion/exclusion sensitivity, and 5–8 parent sessions.
 
-## Task Format
+## Phase 1 — Data foundation
 
-Before implementation, give each active task an ID and fill:
+- [ ] **DATA-01 — Scaffold app and database**
+  - Outcome: a fresh checkout installs, runs, builds, and tests with documented commands.
+  - Acceptance: Next.js/TypeScript, PostgreSQL/PostGIS migrations, i18n skeleton, health check, CI, `.env.example`, exact command contract.
+  - Dependencies: RESEARCH-01.
+  - Status: Next.js 16/React 19/Material UI 9 shell, health endpoint, pinned pnpm lockfile, typecheck, lint, and production build are complete. Database/migrations, i18n, CI, environment contract, and automated browser coverage remain.
+- [ ] **DATA-02 — Ingest Skolenhetsregistret v2**
+  - Outcome: active grundskola directory with historical identity retained.
+  - Acceptance: raw payloads; idempotent full/incremental import; active/ceased handling; organizer, address, coordinates, types, offered grades; schema drift and counters.
+  - Dependencies: DATA-01.
+- [ ] **DATA-03 — Ingest metrics and publish snapshots**
+  - Outcome: school evidence and eligible `score_v1` snapshots reproduce from pinned artifacts.
+  - Acceptance: results/staffing, SALSA, survey connectors; suppression/sample metadata; cohorts; coverage/confidence; ranking eligibility; no missing-to-zero behavior.
+  - Dependencies: RESEARCH-02, RESEARCH-03, DATA-02.
 
-- Outcome: `[observable user or developer result]`
-- Acceptance criteria: `[specific behavior, including important failure cases]`
-- Verification: `[command from README.md and/or reproducible manual steps]`
-- Dependencies: `[none / task IDs]`
+## Later V1 slices
 
-Example: `CORE-01 — Save an item`. Acceptance: create an item, restart, and confirm it remains; a storage failure shows a recoverable error. Verification: the product's persistence test plus the documented restart smoke check.
+- [ ] **DISCOVERY-01** — Address, grade, accessible map/list, radius, filters, empty/error states.
+- [ ] **PROFILE-01** — Stable route, evidence, trends, deterministic insights, sources, metadata.
+- [ ] **COMPARE-01** — Compare up to four schools with expandable source measures.
+- [ ] **RANK-01** — Municipality routes with eligibility disclosure.
+- [ ] **FIT-01** — Local weights with Common Score and My Fit separate.
 
-The phases below are a starter backlog, not automatically accepted product scope. Remove inapplicable tasks and expand the current increment into the format above. Match the specificity of `docs/examples/filled-task.md`, then delete that example.
-
-## Phase 0: Product Setup
-
-- [ ] Map the PRD into `PRODUCT.md`, `ARCHITECTURE.md`, `docs/design.md`, and `docs/roadmap.md`
-- [ ] Fill every blocking field in `PRODUCT.md` before implementation
-- [ ] Choose the UI foundation explicitly in `docs/design.md`
-- [ ] Define evidence, the riskiest assumption, and a small validation experiment when the PRD leaves them open
-- [ ] Choose initial platform and stack in `ARCHITECTURE.md`
-- [ ] Replace harness-history entries in `DECISIONS.md` with the inherited harness revision note
-- [ ] Write the first real task, then delete `docs/examples/`
-- [ ] Capture initial product risks
-- [ ] Create or connect the project repository
-
-## Phase 1: Foundation
-
-- [ ] Create app or package scaffold
-- [ ] Establish minimal folder structure
-- [ ] Populate and verify the command contract in `README.md`
-- [ ] Add formatting and linting, if appropriate
-- [ ] Add first smoke test or verification path
-- [ ] Implement app shell or entry point
-- [ ] Add CI once meaningful reproducible checks exist
-
-## Phase 2: Core Workflow
-
-- [ ] Implement the smallest end-to-end user workflow
-- [ ] Persist the minimum useful user data, if required
-- [ ] Add empty, loading, and error states
-- [ ] Verify the workflow manually
-- [ ] Add focused tests around durable logic
-
-## Phase 3: V1 Completion
-
-- [ ] Complete remaining included V1 capabilities
-- [ ] Add onboarding or first-run UX only if needed
-- [ ] Handle permissions and failure states
-- [ ] Improve accessibility basics
-- [ ] Validate performance for expected V1 usage
-- [ ] Run the product experiment and record evidence and the next decision in `PRODUCT.md`
-- [ ] Prepare release checklist
-
-## Backlog
-
-- [ ] `[future task]`
-- [ ] `[future task]`
-- [ ] `[future task]`
+Later ideas stay in `docs/roadmap.md`.

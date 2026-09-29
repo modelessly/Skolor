@@ -1,164 +1,110 @@
-# PRODUCT.md
-
-Product brief and PRD template.
-
-Replace the placeholders in this file from the PRD when starting a new product. This is the source of truth for what the product is, who it serves, and what the first version must prove.
-
-Map a full PRD with `docs/repo-setup.md`. Ask only where the PRD is silent and the answer changes the next increment. If the PRD conflicts with a non-goal or with `AGENTS.md`, stop and ask before changing scope.
-
-Do not implement until every blocking field below is filled with product-specific content. The platform in `ARCHITECTURE.md` and the UI foundation in `docs/design.md` are also blocking; use "not applicable" when a product has no GUI.
-
-Blocking: Product Name, One-Sentence Description, Core User, Core Moment, Problem, V1 User Promise, V1 Included, V1 Excluded, at least one Core Workflow, Success Criteria.
-
-Fill from the PRD when it contains them: Vision, Product Thesis, Evidence And Riskiest Assumption, Emotional Goals, What This Product Is, What This Product Is Not, Open Questions.
-
-Later ideas go only to `docs/roadmap.md`.
+# Schools — Product Brief
 
 ## Product Name
 
-Blocking.
-
-`[Product Name]`
+Schools (working name)
 
 ## One-Sentence Description
 
-Blocking.
-
-`[A plain-language description of what this product helps someone do.]`
+A transparent decision-support service that helps parents in Sweden find, understand, and compare compulsory schools using authoritative public data.
 
 ## Vision
 
-From the PRD when present.
-
-`[Describe the long-term product promise in a few paragraphs. Keep it concrete enough to guide tradeoffs.]`
+Turn fragmented Swedish school information into a trustworthy answer to: “Which schools are available to my child, and why might each be a good choice?” The product combines proximity, outcomes, context, teaching conditions, environment, and trends without hiding uncertainty or reducing a consequential family decision to a league table.
 
 ## Core User
 
-Blocking.
-
-`[Who is this for? Name the user type, their context, and what they are trying to accomplish.]`
+A parent or guardian in Sweden choosing a grundskola or associated förskoleklass for a child and trying to understand credible differences among realistic nearby options.
 
 ## Core Moment
 
-Blocking.
-
-`[What specific situation creates the need for this product? What is happening right before the user opens it?]`
+The parent has a home location and required grade, but public information is spread across agencies, spreadsheets, reports, and individual school websites.
 
 ## Problem
 
-Blocking.
-
-`[What is painful, slow, confusing, risky, emotionally unsatisfying, or underserved today?]`
+Discovering eligible nearby schools is cumbersome, comparisons are hard to reproduce, raw outcomes are socially confounded, and existing summaries often conceal missing data or methodology.
 
 ## Product Thesis
 
-From the PRD when present.
-
-`[State the bet. Example: If we make X dramatically simpler, then Y user will choose this product over Z alternative.]`
+If authoritative school data is joined, dated, and explained in one location-first workflow, parents can make a more informed shortlist than they can from directories, anecdotes, or raw rankings alone.
 
 ## Evidence And Riskiest Assumption
 
-From the PRD when present. If the PRD is silent, ask before the first increment. This decides what the slice must prove.
-
-- Evidence for the problem: `[observations, interviews, existing behavior; distinguish evidence from assumptions]`
-- Current alternative: `[how the user handles this today]`
-- Riskiest assumption: `[what must be true for this product to be useful]`
-- Smallest experiment: `[prototype session, observed workflow, or other low-cost check]`
-- Decision threshold: `[result that supports continuing, changing direction, or stopping]`
-- Result and next decision: `[not tested / date, evidence, conclusion]`
-
-A working implementation proves behavior, not demand. Use lightweight research before adding measurement infrastructure.
+- Evidence: multiple national authorities publish complementary school information through separate registers, databases, workbooks, and reports. User-demand evidence is not yet collected.
+- Current alternative: municipality and school sites, Utbildningsguiden, recommendations, and manual comparisons.
+- Riskiest assumption: parents will understand and trust a composite score when coverage, uncertainty, source values, and limitations are prominent.
+- Smallest experiment: 5–8 moderated parent sessions using a real municipality and grade; each builds a shortlist, explains two score differences, and identifies uncertain evidence.
+- Decision threshold: continue if 6/8 correctly explain the main score drivers and coverage warning and 5/8 prefer it to their current process; revise or remove the composite score if users over-trust it.
+- Result and next decision: not tested.
 
 ## Emotional Goals
 
-From the PRD when present. This section owns the feelings. `docs/design.md` translates them into interaction and visuals.
-
-The product should feel:
-
-- `[feeling 1]`
-- `[feeling 2]`
-- `[feeling 3]`
-
-The product should not feel:
-
-- `[anti-feeling 1]`
-- `[anti-feeling 2]`
-- `[anti-feeling 3]`
+The product should feel trustworthy, calm, clear without being simplistic, and respectful of the decision. It should not feel like a black-box ranking, a cluttered government database, or a childish/gamified sales product.
 
 ## What This Product Is
 
-From the PRD when present.
-
-- `[clear identity statement]`
-- `[clear identity statement]`
-- `[clear identity statement]`
+- A location-first school discovery and comparison tool.
+- A transparent interpretation layer over authoritative public data.
+- A decision aid that keeps common quality and personal fit separate.
 
 ## What This Product Is Not
 
-From the PRD when present.
-
-- `[explicit non-goal]`
-- `[explicit non-goal]`
-- `[explicit non-goal]`
+- A guarantee that one school is universally “best.”
+- An admissions, catchment, queue, or placement calculator.
+- An AI-generated evaluator or substitute for visiting a school.
 
 ## V1 User Promise
 
-Blocking.
-
-`[In the first usable version, the user should be able to achieve this specific outcome.]`
+Given a Swedish address and required grade, a parent can find plausible nearby active schools, inspect dated evidence and transparent quality components, and compare up to four schools without missing data being presented as poor performance.
 
 ## V1 Scope
 
 ### Included
 
-Blocking.
-
-- `[must-have capability]`
-- `[must-have capability]`
-- `[must-have capability]`
+- All active Swedish grundskolor, including associated förskoleklass, municipal and independent, with actual offered grades.
+- Address-based map/list discovery, radius and core filters, school summaries, profiles, and straight-line distance.
+- Versioned common score only where evidence meets published eligibility rules; component detail, coverage, dates, caveats, and sources everywhere.
+- Comparison for up to four schools and locally stored weighting preferences shown separately as “My Fit.”
+- Municipality/city pages that disclose how many schools are eligible to rank.
+- Swedish and English string architecture; Swedish becomes the default before public launch.
 
 ### Explicitly Excluded
 
-Blocking.
-
-- `[not in V1]`
-- `[not in V1]`
-- `[not in V1]`
+- Förskola, gymnasium, university, admissions probability, catchments, queue availability, and municipality placement rules.
+- Accounts, permanent address storage, travel-time calculation, AI-generated facts or scores, and live agency queries on page load.
+- Inspection findings in `score_v1` until structure, comparability, and reuse terms are validated.
 
 ## Core Workflows
 
-At least one workflow is blocking.
+### Discover nearby schools
 
-### Workflow 1: `[Name]`
+1. Enter an address and choose the required grade.
+2. Inspect active matching schools on a synchronized map/list; change bounds, radius, filters, or sorting.
+3. Open a summary showing distance, grades, type, score or “not enough data,” and key evidence.
 
-1. `[Step]`
-2. `[Step]`
-3. `[Step]`
+### Understand a school
 
-### Workflow 2: `[Name]`
+1. Open a stable school profile.
+2. Inspect components, actual metrics, periods, sample/coverage information, comparisons, and deterministic insights.
+3. Follow source/method links and distinguish unavailable data from poor performance.
 
-1. `[Step]`
-2. `[Step]`
-3. `[Step]`
+### Compare and personalize
+
+1. Select two to four schools.
+2. Compare scores and underlying measures.
+3. Adjust local fit weights while the unchanged common score stays visible.
 
 ## Success Criteria
 
-Blocking.
-
-The first version is successful if:
-
-- `[observable outcome]`
-- `[observable outcome]`
-- `[observable outcome]`
+- Address → grade → shortlist → evidence works on desktop/mobile, including empty and partial-data states.
+- Every evaluative value has a source, period, methodology version, and reproducible transformation.
+- Missing/suppressed values never become zero; ineligible schools remain discoverable but unranked.
+- The parent comprehension experiment meets its threshold.
+- Import, identity, score, missingness, ranking, geography, grade, comparison, and deterministic-insight tests pass on representative fixtures.
 
 ## Open Questions
 
-From the PRD when present. Leave these open until answered.
-
-- `[Question that must be answered before or during implementation]`
-- `[Question that must be answered before or during implementation]`
-- `[Question that must be answered before or during implementation]`
-
-## Future Directions
-
-Later ideas live only in `docs/roadmap.md`. Move an idea into the V1 scope above, and add an accepted task, before building it.
+- Which geocoder/tile provider best satisfies Swedish address quality, privacy, attribution, reliability, and budget?
+- Can every intended Skolverket bulk output and Skolenkäten workbook be reused in a public commercial derivative under confirmed terms?
+- How should cohorts/eligibility change after the audit found only 43.6% complete cases and sharp size/type differences?
+- Should an overall score exist at all after independent statistical and parent-comprehension review of the measured sensitivity?

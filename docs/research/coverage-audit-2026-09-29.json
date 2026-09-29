@@ -1,0 +1,507 @@
+{
+  "generated_at": "2026-09-29T17:33:03.162405+00:00",
+  "scope": "Active grundskola in daily register extract; selected PxWeb measures for 2022/23–2025/26; Skolenkäten 2026",
+  "artifacts": [
+    {
+      "name": "school-units",
+      "url": "https://api.skolverket.se/skolenhetsregistret/export/skolenhet/adressfil",
+      "bytes": 2237058,
+      "sha256": "0392a9ecb0bca0638e368f63a60741108fab82d81f326edd5aaaaefb87f74038"
+    },
+    {
+      "name": "school-unit-index",
+      "url": "https://api.skolverket.se/skolenhetsregistret/v2/school-units",
+      "bytes": 943898,
+      "sha256": "199c32e35a76aec3c6fe4e227a42445352602d86bf43ae3abfd29428186338d5"
+    },
+    {
+      "name": "grundskola-metrics",
+      "url": "https://statistikdatabasen.skolverket.se/PxWeb/api/v1/sv/Skolverkets_statistikdatabas/Underlag_for_analys_inom_det_nationella_kvalitetssystemet/Grundskola/Grundskola.px",
+      "bytes": 4919156,
+      "sha256": "0e292078e10822e5b7200f62062b14fba12731813fea4abe91e2440bccaf70d5",
+      "query": {
+        "query": [
+          {
+            "code": "variable",
+            "selection": {
+              "filter": "item",
+              "values": [
+                "0",
+                "2",
+                "3",
+                "10",
+                "15",
+                "26",
+                "27",
+                "28",
+                "29",
+                "30",
+                "31",
+                "32",
+                "35",
+                "36",
+                "44"
+              ]
+            }
+          },
+          {
+            "code": "level",
+            "selection": {
+              "filter": "all",
+              "values": [
+                "*"
+              ]
+            }
+          },
+          {
+            "code": "time",
+            "selection": {
+              "filter": "all",
+              "values": [
+                "*"
+              ]
+            }
+          }
+        ],
+        "response": {
+          "format": "json-stat2"
+        }
+      }
+    },
+    {
+      "name": "survey-grade_5",
+      "url": "https://www.skolinspektionen.se/globalassets/02-beslut-rapporter-stat/statistik/statistik-skolenkaten/2026/skolenkaten-elever-grundskola-ak-5-2026.xlsx",
+      "bytes": 5177311,
+      "sha256": "7e4a81bb47eea1c6c00139db07d5d496e2fe6f785d950e4345b955d2c10cb220"
+    },
+    {
+      "name": "survey-grade_8",
+      "url": "https://www.skolinspektionen.se/globalassets/02-beslut-rapporter-stat/statistik/statistik-skolenkaten/2026/skolenkaten-elever-grundskola-ak-8-2026.xlsx",
+      "bytes": 3216259,
+      "sha256": "665723215042b7115e27992d21b5103832994159b4b4eaf60e1a066dd2e16301"
+    },
+    {
+      "name": "survey-guardians",
+      "url": "https://www.skolinspektionen.se/globalassets/02-beslut-rapporter-stat/statistik/statistik-skolenkaten/2026/skolenkaten-vardnadshavare-grundskola-ak-1-9-2026.xlsx",
+      "bytes": 4797560,
+      "sha256": "a77f82c8bf797c0b3678aee3b4550aa47250b860de3be41c94a411337516446f"
+    },
+    {
+      "name": "survey-teachers",
+      "url": "https://www.skolinspektionen.se/globalassets/02-beslut-rapporter-stat/statistik/statistik-skolenkaten/2026/skolenkaten-undervisande-larare-grundskola-ak-1-9-2026.xlsx",
+      "bytes": 5470833,
+      "sha256": "ee3a9e3857e511b12a3d926ba0656d51b47e10028ae7bacb6733981897516d3b"
+    }
+  ],
+  "register": {
+    "active_grundskola": 4624,
+    "unique_school_unit_codes": 4624,
+    "organizer_types": {
+      "Kommunal": 3803,
+      "Enskild": 820,
+      "Region": 1
+    },
+    "complete_visit_address": 4624,
+    "visit_address_coverage_pct": 100.0,
+    "offered_grade_counts": {
+      "1": 3521,
+      "2": 3534,
+      "3": 3536,
+      "4": 3392,
+      "5": 3392,
+      "6": 3339,
+      "7": 1783,
+      "8": 1777,
+      "9": 1776
+    },
+    "coordinate_sample": {
+      "method": "systematic sample of sorted active grundskola codes",
+      "requested": 120,
+      "sampled": 120,
+      "with_visit_address": 120,
+      "with_coordinates": 120,
+      "coordinate_rate_pct": 100.0
+    }
+  },
+  "pxweb": {
+    "source_updated": "2026-09-29T06:00:00Z",
+    "school_levels_in_table": 5228,
+    "metric_coverage": {
+      "0": {
+        "label": "Elever: Antal elever",
+        "applicable_schools": 4624,
+        "latest_available": 4507,
+        "coverage_pct": 97.5,
+        "latest_period_distribution": {
+          "2022": 2,
+          "2023": 7,
+          "2024": 9,
+          "2025": 4489
+        },
+        "three_or_more_periods": 4282,
+        "three_period_coverage_pct": 92.6
+      },
+      "2": {
+        "label": "Elever: Andel (%) med utländsk bakgrund",
+        "applicable_schools": 4624,
+        "latest_available": 4189,
+        "coverage_pct": 90.6,
+        "latest_period_distribution": {
+          "2022": 78,
+          "2023": 92,
+          "2024": 212,
+          "2025": 3807
+        },
+        "three_or_more_periods": 3644,
+        "three_period_coverage_pct": 78.8
+      },
+      "3": {
+        "label": "Elever: Andel (%) med föräldrar med eftergymnasial utbildning",
+        "applicable_schools": 4624,
+        "latest_available": 4427,
+        "coverage_pct": 95.7,
+        "latest_period_distribution": {
+          "2022": 15,
+          "2023": 39,
+          "2024": 57,
+          "2025": 4316
+        },
+        "three_or_more_periods": 4150,
+        "three_period_coverage_pct": 89.7
+      },
+      "10": {
+        "label": "Personal: Lärare i ämnen/ämnesområden, andel (%) med behörighet (heltidstjänster)",
+        "applicable_schools": 4624,
+        "latest_available": 4348,
+        "coverage_pct": 94.0,
+        "latest_period_distribution": {
+          "2022": 6,
+          "2023": 134,
+          "2024": 53,
+          "2025": 4155
+        },
+        "three_or_more_periods": 4000,
+        "three_period_coverage_pct": 86.5
+      },
+      "15": {
+        "label": "Personal: Antal elever per lärare (heltidstjänster)",
+        "applicable_schools": 4624,
+        "latest_available": 4481,
+        "coverage_pct": 96.9,
+        "latest_period_distribution": {
+          "2022": 4,
+          "2023": 116,
+          "2024": 47,
+          "2025": 4314
+        },
+        "three_or_more_periods": 4161,
+        "three_period_coverage_pct": 90.0
+      },
+      "26": {
+        "label": "Delmål 1: Andel (%) elever som har lägst betyget E i samtliga ämnen efter årskurs 6",
+        "applicable_schools": 3339,
+        "latest_available": 1747,
+        "coverage_pct": 52.3,
+        "latest_period_distribution": {
+          "2022": 181,
+          "2023": 312,
+          "2024": 1302
+        },
+        "three_or_more_periods": 792,
+        "three_period_coverage_pct": 23.7
+      },
+      "27": {
+        "label": "Delmål 1: Andel (%) elever som har lägst betyget E i samtliga ämnen efter årskurs 9",
+        "applicable_schools": 1776,
+        "latest_available": 1274,
+        "coverage_pct": 71.7,
+        "latest_period_distribution": {
+          "2022": 41,
+          "2023": 69,
+          "2024": 125,
+          "2025": 1059
+        },
+        "three_or_more_periods": 889,
+        "three_period_coverage_pct": 50.1
+      },
+      "28": {
+        "label": "Delmål 1: Andel (%) elever som blir behöriga till ett nationellt program i gymnasieskolan",
+        "applicable_schools": 1776,
+        "latest_available": 1148,
+        "coverage_pct": 64.6,
+        "latest_period_distribution": {
+          "2022": 81,
+          "2023": 91,
+          "2024": 186,
+          "2025": 809
+        },
+        "three_or_more_periods": 576,
+        "three_period_coverage_pct": 32.4
+      },
+      "29": {
+        "label": "Delmål 2: Elevers upplevelse av trygghet i årskurs 5 (medelvärde)*",
+        "applicable_schools": 3392,
+        "latest_available": 3097,
+        "coverage_pct": 91.3,
+        "latest_period_distribution": {
+          "2022": 57,
+          "2023": 66,
+          "2024": 1507,
+          "2025": 1523
+        },
+        "three_or_more_periods": 0,
+        "three_period_coverage_pct": 0.0
+      },
+      "30": {
+        "label": "Delmål 2: Elevers upplevelse av trygghet i årskurs 8 (medelvärde)*",
+        "applicable_schools": 1777,
+        "latest_available": 1573,
+        "coverage_pct": 88.5,
+        "latest_period_distribution": {
+          "2022": 20,
+          "2023": 16,
+          "2024": 769,
+          "2025": 791
+        },
+        "three_or_more_periods": 0,
+        "three_period_coverage_pct": 0.0
+      },
+      "31": {
+        "label": "Delmål 2: Elevers upplevelse av studiero i årskurs 5 (medelvärde)*",
+        "applicable_schools": 3392,
+        "latest_available": 3097,
+        "coverage_pct": 91.3,
+        "latest_period_distribution": {
+          "2022": 57,
+          "2023": 66,
+          "2024": 1507,
+          "2025": 1523
+        },
+        "three_or_more_periods": 0,
+        "three_period_coverage_pct": 0.0
+      },
+      "32": {
+        "label": "Delmål 2: Elevers upplevelse av studiero i årskurs 8 (medelvärde)*",
+        "applicable_schools": 1777,
+        "latest_available": 1573,
+        "coverage_pct": 88.5,
+        "latest_period_distribution": {
+          "2022": 20,
+          "2023": 16,
+          "2024": 769,
+          "2025": 791
+        },
+        "three_or_more_periods": 0,
+        "three_period_coverage_pct": 0.0
+      },
+      "35": {
+        "label": "Delmål 2: Pedagogiska personalens uppfattning om trygghet (medelvärde)*",
+        "applicable_schools": 4624,
+        "latest_available": 4005,
+        "coverage_pct": 86.6,
+        "latest_period_distribution": {
+          "2022": 94,
+          "2023": 107,
+          "2024": 1913,
+          "2025": 1891
+        },
+        "three_or_more_periods": 0,
+        "three_period_coverage_pct": 0.0
+      },
+      "36": {
+        "label": "Delmål 2: Pedagogiska personalens uppfattning om studiero (medelvärde)*",
+        "applicable_schools": 4624,
+        "latest_available": 4005,
+        "coverage_pct": 86.6,
+        "latest_period_distribution": {
+          "2022": 94,
+          "2023": 107,
+          "2024": 1913,
+          "2025": 1891
+        },
+        "three_or_more_periods": 0,
+        "three_period_coverage_pct": 0.0
+      },
+      "44": {
+        "label": "Delmål 4: Vårdnadshavares uppfattning om deras barn får den hjälp som behövs för att klara skolarbetet (medelvärde)*",
+        "applicable_schools": 4624,
+        "latest_available": 4260,
+        "coverage_pct": 92.1,
+        "latest_period_distribution": {
+          "2022": 68,
+          "2023": 95,
+          "2024": 2075,
+          "2025": 2022
+        },
+        "three_or_more_periods": 0,
+        "three_period_coverage_pct": 0.0
+      }
+    }
+  },
+  "surveys_2026": {
+    "grade_5": {
+      "school_codes": 1640,
+      "joined_active_register": 1612,
+      "join_rate_pct": 98.3,
+      "active_register_coverage_pct": 34.9,
+      "unmatched_codes": 28,
+      "unmatched_sample": [
+        "10360193",
+        "13518539",
+        "15312030",
+        "15315609",
+        "16148785",
+        "17752023",
+        "18484321",
+        "24070185",
+        "25620892",
+        "25762448"
+      ],
+      "unmatched_status": {
+        "AKTIV": 11,
+        "UPPHORT": 6,
+        "VILANDE": 11
+      },
+      "unmatched_active_school_types": {
+        "GRAN": 10,
+        "FTH": 4,
+        "FKLASS": 1,
+        "GY": 1
+      },
+      "duplicate_school_rows": 0,
+      "schools_with_group_size": 1640,
+      "suppression_markers": {
+        "*": 67657,
+        "-": 256092,
+        "***": 171
+      }
+    },
+    "grade_8": {
+      "school_codes": 864,
+      "joined_active_register": 837,
+      "join_rate_pct": 96.9,
+      "active_register_coverage_pct": 18.1,
+      "unmatched_codes": 27,
+      "unmatched_sample": [
+        "10360193",
+        "12717350",
+        "13518539",
+        "15312030",
+        "16148785",
+        "17024808",
+        "18969406",
+        "25762448",
+        "41607808",
+        "46997269"
+      ],
+      "unmatched_status": {
+        "VILANDE": 7,
+        "UPPHORT": 8,
+        "AKTIV": 12
+      },
+      "unmatched_active_school_types": {
+        "GRAN": 11,
+        "FTH": 7,
+        "FKLASS": 1,
+        "GY": 1
+      },
+      "duplicate_school_rows": 0,
+      "schools_with_group_size": 864,
+      "suppression_markers": {
+        "*": 36971,
+        "-": 96574,
+        "***": 58
+      }
+    },
+    "guardians": {
+      "school_codes": 2256,
+      "joined_active_register": 2204,
+      "join_rate_pct": 97.7,
+      "active_register_coverage_pct": 47.7,
+      "unmatched_codes": 52,
+      "unmatched_sample": [
+        "10360193",
+        "11984124",
+        "12717350",
+        "15312030",
+        "15315609",
+        "16148785",
+        "17024808",
+        "17752023",
+        "18484321",
+        "24070185"
+      ],
+      "unmatched_status": {
+        "AKTIV": 11,
+        "VILANDE": 28,
+        "UPPHORT": 13
+      },
+      "unmatched_active_school_types": {
+        "FTH": 6,
+        "GRAN": 10,
+        "FKLASS": 3,
+        "GYAN": 1,
+        "VUX": 1,
+        "GY": 1
+      },
+      "duplicate_school_rows": 0,
+      "schools_with_group_size": 2256,
+      "suppression_markers": {
+        "***": 763,
+        "-": 166570,
+        "*": 59865
+      }
+    },
+    "teachers": {
+      "school_codes": 2258,
+      "joined_active_register": 2204,
+      "join_rate_pct": 97.6,
+      "active_register_coverage_pct": 47.7,
+      "unmatched_codes": 54,
+      "unmatched_sample": [
+        "10360193",
+        "11984124",
+        "12717350",
+        "13518539",
+        "15312030",
+        "15315609",
+        "16148785",
+        "17024808",
+        "17752023",
+        "18484321"
+      ],
+      "unmatched_status": {
+        "VILANDE": 28,
+        "AKTIV": 13,
+        "UPPHORT": 13
+      },
+      "unmatched_active_school_types": {
+        "GY": 2,
+        "GRAN": 11,
+        "FTH": 8,
+        "FKLASS": 2
+      },
+      "duplicate_school_rows": 0,
+      "schools_with_group_size": 2258,
+      "suppression_markers": {
+        "-": 735319,
+        "*": 44702,
+        "***": 227
+      }
+    }
+  },
+  "eligibility_proxies": {
+    "grade_9_outcomes_both_measures": 1044,
+    "grade_6_attainment": 1747,
+    "teaching_both_measures": 4347,
+    "pupil_environment_safety_and_study_pair": 3724,
+    "outcome_teaching_environment_intersection": 2213,
+    "intersection_pct_all_active": 47.9,
+    "note": "Proxy only: SALSA and full score anchor/recency/confidence rules are not applied."
+  },
+  "known_gaps": [
+    "No supported national bulk SALSA export was verified; only the public per-school SIRIS application and methodology were found.",
+    "The daily register XLSX has complete visit addresses but no coordinates; coordinate coverage is estimated from a deterministic API detail sample.",
+    "This audit profiles availability, not statistical validity, response bias, licence sufficiency, or parent comprehension."
+  ]
+}

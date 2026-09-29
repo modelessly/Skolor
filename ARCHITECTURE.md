@@ -1,131 +1,65 @@
-# ARCHITECTURE.md
+# Architecture
 
-Technical direction template.
+## Platform And Stack
 
-Use this file to make the initial implementation choices explicit. Keep it current as durable architectural decisions are made.
+- Responsive, server-rendered web app; Node.js 24+ and evergreen browsers.
+- Next.js App Router, React, TypeScript, Material UI v9, and Emotion (see `docs/design.md`).
+- PostgreSQL/PostGIS; immutable raw artifacts in object storage.
+- MapLibre GL JS behind tile adapters; Geoapify is the initial server-side geocoder behind a replaceable adapter.
+- TypeScript ingestion by default; Python only when statistical work is materially clearer.
+- Unit, integration, and browser tests.
 
-## Platform
-
-Blocking before implementation.
-
-- Primary platform: `[iOS / macOS / web / desktop / CLI / other]`
-- Secondary platforms, if any: `[none / list]`
-- Minimum supported version or runtime: `[version]`
-
-## Core Technologies
-
-- UI framework: `[framework or none]`
-- UI foundation: See `docs/design.md` for the selected system and source; record compatibility constraints here.
-- Language: `[language]`
-- Persistence: `[storage approach]`
-- Networking: `[none / API / local network / other]`
-- Build tooling: `[tooling]`
-- Testing: `[test approach]`
-
-Prefer the simplest reliable option that supports the V1 product promise.
+These are reversible Phase 1 choices. Phase 0 provisions no cloud resources.
 
 ## Reproducible Development
 
-- Runtime / SDK version: `[version]`
-- Package manager / version: `[tool or N/A]`
-- Dependency lockfile: `[path or N/A]`
-- Configuration prerequisites: `[reference .env.example or platform setup; no secrets]`
-
-Keep exact setup, run, build, and verification commands in `README.md`, not duplicated here. Establish a runnable smoke check with the first scaffold. Add CI when there is meaningful behavior to verify.
-
-## Architectural Goals
-
-Prioritize:
-
-- maintainability
-- clarity
-- fast iteration
-- small focused modules
-- testable core behavior
-- platform-native conventions
-
-Avoid:
-
-- over-abstraction
-- excessive protocols or interfaces before they have a job
-- unnecessary dependency injection frameworks
-- speculative infrastructure
-- optimizing for features not in the current product scope
+- Node.js 24+ and pnpm 12.8.1; exact application dependencies and `pnpm-lock.yaml` are pinned.
+- Add `.env.example` with the first integration; never include secrets.
+- Exact commands belong in `README.md`.
 
 ## Initial Structure
 
-Proposed starting structure:
+- `src/app`: routes, server metadata, composition.
+- `src/features`: discovery, profiles, comparison, rankings, fit.
+- `src/theme`: Material tokens and product-owned component overrides.
+- `src/domain`: identity, metrics, scores, eligibility, deterministic insights.
+- `src/data`: connectors, raw schemas, normalization, import runs.
+- `src/db`: schema, migrations, repositories.
+- `src/i18n`: Swedish/English messages.
+- `tests/fixtures`: complete, incomplete, small, renamed, closed, and unusual-grade schools.
 
-- `App`: application entry point and composition
-- `Features`: user-facing workflows
-- `Models`: domain models and value types
-- `Persistence`: local storage and migrations
-- `Services`: platform integrations with clear ownership
-- `SharedUI`: reusable UI primitives, if a UI exists
-- `Tests`: focused tests for durable behavior
+Create folders only with their first behavior.
 
-Adjust this structure to fit the actual platform and product. Do not create empty folders just to satisfy this outline.
+## Data Layers
 
-## Data Model
+1. Raw: immutable artifact/record, retrieval metadata, checksum.
+2. Normalized: schools, organizers, identifiers, grades, definitions, observations.
+3. Derived: cohorts, normalized values, coverage, confidence, deterministic insights.
+4. Published: immutable methodology-versioned score snapshots and ranking eligibility.
 
-Document the first durable entities here:
-
-- `[Entity]`: `[purpose and key fields]`
-- `[Entity]`: `[purpose and key fields]`
-- `[Entity]`: `[purpose and key fields]`
+See `docs/data-model.md`.
 
 ## State Ownership
 
-Define:
-
-- what state is local to a screen or component
-- what state is shared across workflows
-- what state persists across launches
-- how errors and loading states are represented
-
-## Persistence Philosophy
-
-Default to local persistence unless the product clearly requires a server.
-
-Before adding backend infrastructure, answer:
-
-- What user value requires a backend now?
-- What simpler local version could validate the product first?
-- What operational burden does the backend introduce?
+- Viewport, filters, and selection are URL-addressable screen state.
+- Home coordinates stay in session/client state and out of application storage/logs.
+- Comparison IDs and fit weights persist locally; no account.
+- Evidence and common scores are server-owned and immutable per methodology version.
+- Loading, empty, partial, stale, and source-failure states are explicit.
 
 ## Integration Boundaries
 
-List external services, SDKs, APIs, or device capabilities here:
+- Skolenhetsregistret v2: canonical current/historical unit identity and coordinates; daily incremental import.
+- Skolverket statistics/PxWeb: outcomes, staffing, SALSA.
+- Skolinspektionen workbooks: survey observations by respondent and cycle.
+- Kolada v3: secondary only for unique validated indicators; retain V-unit crosswalk.
+- SCB PxWeb: context benchmarks only unless a defensible unit key exists.
+- Geoapify geocoder: server-side submit-only address lookup, `GEOAPIFY_API_KEY`, no address persistence/logging, required attribution, and a replaceable adapter.
+- Map: tile provider unresolved; accessible list fallback when tiles/WebGL fail.
 
-- `[integration]`: `[why it is needed, failure behavior, privacy implications]`
+## Reliability And Privacy
 
-Do not add integrations without updating this section and `DECISIONS.md`.
-
-## Reliability Requirements
-
-The first version should handle:
-
-- permissions and denial states
-- interrupted workflows
-- empty states
-- storage or persistence failures
-- offline behavior, if relevant
-- app restarts or browser refreshes, if relevant
-
-## Future-Proofing
-
-Future-proof by keeping boundaries clear, not by building unused systems.
-
-Acceptable future-proofing:
-
-- clear domain models
-- isolated platform integrations
-- simple persistence migrations
-- tests around important behavior
-
-Avoid future-proofing through:
-
-- unused plugin systems
-- abstract service locators
-- speculative sync engines
-- generic multi-platform layers before one platform works
+- Imports are idempotent, schema-validated, checksum-aware, auditable, and fail closed on incompatible change.
+- Each run records received/created/updated/rejected counts, missing IDs, schema changes, and failures.
+- Suppressed stays suppressed; null never becomes zero. Serve last successful dated data on upstream failure.
+- Send an address only to the selected geocoder and retain it only for the session absent future consent.

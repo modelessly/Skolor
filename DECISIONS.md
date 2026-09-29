@@ -1,99 +1,93 @@
-# DECISIONS.md
+# Decisions
 
-Append-only decision log.
+Append-only. Supersede accepted decisions with a new entry.
 
-Use this file for product and architectural decisions that future agents or collaborators should understand. Do not rewrite history. If a decision changes, add a new entry that supersedes the earlier one.
+## Inherited harness
 
-## Decision Template
+Harness revision: `2026-09-23`
 
-```md
----
-
-## YYYY-MM-DD: [Decision Title]
-
-Decision:
-[What was decided.]
-
-Reasoning:
-[Why this direction was chosen.]
-
-Tradeoffs:
-[What this makes easier and what it makes harder.]
-
-Status:
-[Proposed / Accepted / Superseded]
-```
+Standing constraints live in `AGENTS.md`. Product decisions start below.
 
 ---
 
-## 2026-05-29: Use This Repository As A Product Harness
+## 2026-09-29: Treat provenance as a product boundary
 
-Decision:
-This repository is a reusable product-start template rather than a product-specific codebase.
+Decision: Use Skolverket school-unit code as canonical external identity, retain source identifiers/raw artifacts, and separate raw, normalized, derived, and published layers.
 
-Reasoning:
-The goal is to help a coding agent start new products faster by providing shared workflow instructions, product-shaping prompts, architecture guidance, and planning documents before application code exists.
+Reasoning: Skolenhetsregistret v2 is authoritative and daily updated; explanations must remain reproducible across interpretation changes.
 
-Tradeoffs:
-The template stays intentionally generic, so each new product still needs a real PRD and initial stack choice before implementation begins.
+Tradeoffs: more storage/import discipline, but corrections and methodology revisions stay auditable.
 
-Status:
-Accepted
+Status: Accepted
 
 ---
 
-## 2026-05-29: Keep V1 Scope Narrow By Default
+## 2026-09-29: Gate composite scoring
 
-Decision:
-New products created from this harness should start with a narrow V1 and avoid backend infrastructure, authentication, cloud services, social features, AI generation, analytics, and unnecessary dependencies unless explicitly required by the product brief.
+Decision: Do not publish a composite until a national coverage audit, sensitivity/fairness analysis, and parent comprehension test pass. SALSA is only a separately explained grade-9 contextual signal, never a standalone rank.
 
-Reasoning:
-Most early product risk is about proving the core workflow and user value. Extra infrastructure increases complexity before the product has earned it.
+Reasoning: sources differ in cycle, suppression, and population; Skolverket says SALSA alone cannot determine quality or rank schools.
 
-Tradeoffs:
-Some products will need to add infrastructure earlier, but that decision should be deliberate and documented.
+Tradeoffs: the first public experience may be evidence-led comparison without an overall score.
 
-Status:
-Accepted
+Status: Accepted
 
 ---
 
-## 2026-09-20: Use A Small Portable Workflow With Explicit Product Choices
+## 2026-09-29: Use a replaceable web/data stack
 
-Decision:
-Keep `AGENTS.md` as the canonical workflow with small Claude and Gemini adapters and an explicit startup prompt for other clients. Remove the redundant `CODEX.md` entry point. Route context by task instead of requiring every document on every change.
+Decision: Target Next.js/React/TypeScript, PostgreSQL/PostGIS, MapLibre adapters, Tailwind, and shadcn/ui/Radix. Provision no infrastructure in Phase 0.
 
-Keep V1 scope and success criteria in `PRODUCT.md`, removing the duplicated scope document. Make the roadmap optional. Ask for the UI foundation at kickoff, including Modeless, shadcn/ui, native controls, custom/other, recommendation, or not applicable; there is no default system.
+Reasoning: supports indexable routes, geospatial search, accessible composition, and one deployable app while keeping providers replaceable.
 
-Add a reproducible command contract, observable task acceptance criteria, evidence-based handoffs, an optional concurrent-agent protocol, product-assumption experiments, and stage-appropriate release checks.
+Tradeoffs: PostGIS/mapping add operations; exact vendors remain open.
 
-Reasoning:
-Reduce conflicting instructions and context overhead while making completion and transfer between coding clients verifiable. Preserve the harness's narrow product focus without requiring a specific model, plugin, or orchestration tool.
-
-Tradeoffs:
-Selective reading requires clear routing and current authoritative documents. Optional coordination and release fields require product-specific setup; they should not become paperwork for trivial tasks. Cross-client behavior must be trialed in the actual clients rather than assumed from filenames.
-
-Status:
-Accepted
+Status: Accepted
 
 ---
 
-## 2026-09-23: Start From A PRD And Keep Product Decisions Separate
+## 2026-09-29: Use Google Material Design with Material UI
 
-Decision:
-Kickoff expects a full PRD. Map it into the authoritative documents and ask only unanswered decisions, including the UI foundation, without naming a default design system. Do not implement until blocking product fields, platform, and UI foundation are filled.
+Decision: Supersede the shadcn/ui, Radix, and Tailwind UI-foundation portion of “Use a replaceable web/data stack.” Use Google Material Design with Material UI v9 and Emotion.
 
-On clone, remove harness-history entries from `DECISIONS.md`. Standing constraints stay in `AGENTS.md`. Record the harness revision once, then log product decisions only.
+Reasoning: The user selected Material Design. Material UI is actively supported, production-ready, and integrates with Next.js. Google’s Material Web library is in maintenance mode. Material UI currently implements Material Design 2, so Material 3 guidance informs product tokens and adaptive behavior without claiming full M3 component parity.
 
-Keep one startup prompt, in `docs/prompts.md`. Emotional goals stay in `PRODUCT.md`. Later ideas stay in `docs/roadmap.md`.
+Tradeoffs: Material UI adds Emotion and a recognizable default language that needs careful theming. It offers broader maintained React coverage than official Material Web, while latest Material 3 components may need product-owned adaptations.
 
-This supersedes the named UI-system menu in the 2026-09-20 entry. The rest of that entry stands.
+Status: Accepted; supersedes the UI-library portion of the earlier web-stack decision.
 
-Reasoning:
-The harness is copied when a PRD already exists, and UI systems vary by product. A decision log that still says this repository is a product harness steers product agents at the template. Duplicated prompts, feelings, and future lists drift.
+---
 
-Tradeoffs:
-Clone setup has to reset the decision log; leaving the old entries in place keeps the template history inside the product. Agents need the PRD in context. This harness repository keeps the full history because those entries are about the template.
+## 2026-09-29: Continue withholding an overall score after quantitative diagnostics
 
-Status:
-Accepted
+Decision: Keep the Common School Score and ordinal rankings disabled. Continue with evidence profiles and comparisons while the remaining validation gates are resolved.
+
+Reasoning: The first reproducible diagnostic found only 43.6% complete-case coverage, material rank movement under plausible weights, socioeconomic association, and strongly uneven eligibility by school size and organizer. These are research warnings, not parameters to tune away.
+
+Tradeoffs: V1 may be less superficially simple and cannot promise a universal league table. It avoids presenting unstable or selectively available evidence as precise comparative quality.
+
+Status: Accepted
+
+---
+
+## 2026-09-29: Pin the initial web scaffold dependencies
+
+Decision: Pin Next.js 16.3.7, React/React DOM 19.3.0, Material UI and its Next.js integration 9.4.0, Emotion 11.14.x, TypeScript 6.0.3, ESLint 9.39.5, and eslint-config-next 16.3.7 with pnpm 12.8.1.
+
+Reasoning: Next.js/React provide the server-rendered application foundation; Material UI/Emotion implement the selected design system and SSR style cache; TypeScript and the Next ESLint configuration provide static and framework checks. TypeScript 7 and ESLint 10 were not retained because the current typescript-eslint/react lint plugins reject those APIs.
+
+Tradeoffs: exact pins improve reproducibility but require deliberate upgrades. ESLint 9 is a compatibility pin until the Next.js plugin chain supports ESLint 10.
+
+Status: Accepted
+
+---
+
+## 2026-09-29: Use Geoapify for initial address geocoding
+
+Decision: Use Geoapify’s server-side forward-geocoding API for the early public/test product, behind a replaceable adapter and with its API key kept server-side.
+
+Reasoning: Its current free plan permits limited commercial use, provides 3,000 credits per day, and requires no card to begin. It enables an address-submit search without using the public Nominatim service, which is unsuitable for this product’s launch infrastructure.
+
+Tradeoffs: Geoapify attribution is required and the free quota/rate limits need monitoring. We must not persist or log home addresses, must reassess DPA/privacy and Swedish quality before launch, and should retain a path to Lantmäteriet or another provider.
+
+Status: Accepted

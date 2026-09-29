@@ -1,97 +1,60 @@
 # Design Principles
 
-Use this file to define the product's interaction and visual direction. Replace placeholders with product-specific guidance before heavy UI work begins.
+## UI Foundation
 
-## UI Foundation — Choose At Kickoff
+- Selected design system: Google Material Design.
+- React implementation: Material UI v9 with Emotion.
+- Design reference: <https://m3.material.io/>.
+- Component reference: <https://mui.com/material-ui/getting-started/>.
+- Version: Material UI v9.x; pin the exact version at scaffold time.
 
-No system is selected by default. Ask which UI foundation or component library to use: a named system, native platform controls, a recommendation, or not applicable.
+Material UI is an actively supported React implementation with official Next.js integration. Its current component baseline implements Material Design 2, not Material Design 3. Use Material 3 guidance for hierarchy, adaptive layout, accessibility, motion, and product tokens without claiming full M3 parity. Google’s official Material Web components are not selected because they are in maintenance mode and do not completely cover the current system.
 
-- Selected foundation: `[unresolved / selection]`
-- Authoritative documentation or local reference: `[URL or path; required before using an unfamiliar system]`
-- Version / revision, when applicable: `[version]`
-- Why it fits the platform and core workflow: `[reason]`
-- Constraints or intentional deviations: `[details or none]`
+## Product Theme
 
-Resolve the selection before substantial UI work. This choice is blocking for a product with a GUI. If asked to recommend, explain the fit and tradeoffs before resolving the choice. If the chosen system's source is unavailable, ask for a reference rather than inventing its conventions. Record technical implications in `ARCHITECTURE.md` and durable rationale in `DECISIONS.md`.
+- Calm neutral surfaces, muted Nordic blue primary, restrained teal secondary.
+- Tonal surface hierarchy instead of heavy borders or card grids.
+- Roboto as default UI type, self-hosted when packaging/licensing is established.
+- Small radii, moderate elevation, and strong type hierarchy.
+- Material Symbols only when they improve recognition; label or hide them appropriately for assistive technology.
 
-The UI foundation supplies primitives and conventions; define the product's visual identity and interaction direction below. For products without a GUI, mark the foundation and the visual sections not applicable.
+Color, typography, shape, spacing, elevation, state, and motion tokens live in `src/theme`; features do not scatter raw theme values.
 
-## Emotional Tone
+## Component Posture
 
-Emotional goals are authoritative in `PRODUCT.md`. Use the fields below to say how those feelings show up in interaction and visuals. If a feeling needs to change, change it in `PRODUCT.md`.
+- Use Material UI for inputs, buttons, chips, dialogs, navigation, tooltips, tables, alerts, skeletons, and focus behavior.
+- Reserve contained buttons for the primary action; use text/outlined secondary actions.
+- Use filter chips for active compact filters, not decoration.
+- Use dialogs only for short interruptive decisions; details use stable routes or non-modal surfaces.
+- Use data tables for comparison with sticky row labels and a linear mobile alternative.
+- Maps/charts consume Material tokens and provide equivalent text/list access.
+- Do not use dashboard templates or “cards everywhere.” Prefer typography, spacing, and tonal grouping.
 
-How the emotional goals show up:
+## Tone And Interaction
 
-- `[interface behavior or visual choice]`
-- `[interface behavior or visual choice]`
-- `[interface behavior or visual choice]`
+- Start with location and grade, not marketing.
+- Show source values before progressively disclosed formulas.
+- Keep map/list synchronized and keyboard usable.
+- Keep Common Score distinct from My Fit.
+- Never make missing data feel like school failure or a rank feel like a verdict.
 
-## Interaction Philosophy
+## Score Presentation
 
-Define the preferred interaction posture:
+- Show an integer 0–100 only when eligible; otherwise “Not enough current data.”
+- Pair every score with coverage, evidence period, and “Why?”.
+- Expose raw value, cohort, transformation, weight, and contribution.
+- Rankings disclose eligible/total counts and never number an ineligible school.
+- Color is secondary, never the only encoding or a red/green moral grade.
 
-- `[Example: fast actions over configuration]`
-- `[Example: low friction over completeness]`
-- `[Example: direct manipulation over hidden automation]`
+## Responsive Layout
 
-The user should never feel:
+- Compact: list-first discovery, explicit alternate map view, bottom comparison action.
+- Medium/expanded: adaptive map/list split; a side sheet only when it preserves navigation.
+- Profiles/comparisons use readable linear sections, not dashboard grids.
+- Navigation follows Material adaptive patterns while preserving URLs and browser history.
 
-- `[frustration to avoid]`
-- `[frustration to avoid]`
-- `[frustration to avoid]`
+## Motion And Accessibility
 
-## Visual Direction
+Motion is brief, functional, and tokenized; respect reduced motion and avoid animated score counting. Meet WCAG 2.2 AA with visible focus, semantic tables/headings, chart text equivalents, 44px targets, localized labels, accessible map alternatives, and explicit loading/empty/error/partial states.
 
-Inspired by:
-
-- `[reference]`
-- `[reference]`
-- `[reference]`
-
-But visually:
-
-- `[visual quality]`
-- `[visual quality]`
-- `[visual quality]`
-
-Avoid:
-
-- `[visual anti-pattern]`
-- `[visual anti-pattern]`
-- `[visual anti-pattern]`
-
-## Motion
-
-Motion should feel:
-
-- `[quality]`
-- `[quality]`
-
-Avoid:
-
-- `[motion anti-pattern]`
-- `[motion anti-pattern]`
-
-## Layout
-
-Prioritize:
-
-- clear hierarchy
-- generous touch or click targets
-- readable content
-- obvious primary action
-- minimal chrome around the core workflow
-
-## Accessibility
-
-At minimum, support:
-
-- readable type sizes
-- sufficient contrast
-- keyboard navigation where relevant
-- screen reader labels for important controls
-- clear focus, loading, empty, and error states
-
-## UI Verification
-
-For meaningful UI changes, exercise the actual core workflow at relevant viewport or device sizes, including empty, loading, and error states. Check keyboard/focus behavior, readable contrast, labels, and reduced motion where relevant. A single screenshot is not verification. Record what you exercised and what you observed, including screenshot paths when they support that record. If visual tools are unavailable, state that limitation and provide exact manual checks; do not claim visual verification.
+Verify desktop/mobile, keyboard, landmarks, zoom/reflow, reduced motion, map failure, no results, incomplete metrics, and suppression. Material components provide a baseline, not proof of accessibility in the composed product.

@@ -1,0 +1,270 @@
+{
+  "generated_at": "2026-09-29T17:33:03.855739+00:00",
+  "status": "research diagnostic only; not a production score or ranking",
+  "population": {
+    "active_grundskola": 4624,
+    "complete_case_schools": 2015,
+    "complete_case_pct": 43.6,
+    "two_of_three_schools": 3668,
+    "two_of_three_pct": 79.3,
+    "component_count_distribution": {
+      "1": 790,
+      "2": 1653,
+      "3": 2015
+    }
+  },
+  "definitions": {
+    "academic": "Grade-9 schools require both grade-9 outcome measures; other grade-6 schools use grade-6 all-subject attainment.",
+    "teaching": "Mean percentile of qualified-teacher share and inverse pupils-per-teacher.",
+    "environment": "Mean of complete safety/study-environment pairs for applicable grades 5 and/or 8.",
+    "normalization": "Latest available value; empirical mid-rank percentile within each metric's observed population.",
+    "missingness": "Complete-case requires all three components; the two-of-three scenario visibly renormalizes only for sensitivity testing."
+  },
+  "weight_sensitivity": {
+    "academic_heavy": {
+      "weights": {
+        "academic": 0.6,
+        "teaching": 0.2,
+        "environment": 0.2
+      },
+      "schools": 2015,
+      "spearman": 0.938,
+      "median_absolute_rank_movement": 123.0,
+      "p95_absolute_rank_movement": 421.0,
+      "maximum_absolute_rank_movement": 800.0,
+      "top_quartile_overlap_pct": 82.3
+    },
+    "teaching_heavy": {
+      "weights": {
+        "academic": 0.25,
+        "teaching": 0.5,
+        "environment": 0.25
+      },
+      "schools": 2015,
+      "spearman": 0.89,
+      "median_absolute_rank_movement": 155.0,
+      "p95_absolute_rank_movement": 562.3,
+      "maximum_absolute_rank_movement": 900.0,
+      "top_quartile_overlap_pct": 76.8
+    },
+    "environment_heavy": {
+      "weights": {
+        "academic": 0.25,
+        "teaching": 0.25,
+        "environment": 0.5
+      },
+      "schools": 2015,
+      "spearman": 0.919,
+      "median_absolute_rank_movement": 132.0,
+      "p95_absolute_rank_movement": 483.0,
+      "maximum_absolute_rank_movement": 743.0,
+      "top_quartile_overlap_pct": 79.6
+    },
+    "near_equal": {
+      "weights": {
+        "academic": 0.33,
+        "teaching": 0.33,
+        "environment": 0.34
+      },
+      "schools": 2015,
+      "spearman": 0.987,
+      "median_absolute_rank_movement": 53.0,
+      "p95_absolute_rank_movement": 202.0,
+      "maximum_absolute_rank_movement": 366.0,
+      "top_quartile_overlap_pct": 91.7
+    }
+  },
+  "missingness_sensitivity": {
+    "complete_case": 2015,
+    "two_of_three": 3668,
+    "additional_schools": 1653,
+    "comparison_on_complete_cases": {
+      "schools": 2015,
+      "spearman": 1.0,
+      "median_absolute_rank_movement": 0.0,
+      "p95_absolute_rank_movement": 0.0,
+      "maximum_absolute_rank_movement": 0.0,
+      "top_quartile_overlap_pct": 100.0
+    },
+    "warning": "The additional schools are not directly comparable to complete cases; this scenario is not a publication recommendation."
+  },
+  "context_correlations": {
+    "parents_postsecondary_education": {
+      "metric": "3",
+      "schools": 2014,
+      "score_pearson": 0.534,
+      "score_spearman": 0.544,
+      "academic_spearman": 0.653
+    },
+    "foreign_background": {
+      "metric": "2",
+      "schools": 1999,
+      "score_pearson": -0.318,
+      "score_spearman": -0.312,
+      "academic_spearman": -0.411
+    }
+  },
+  "parent_education_quartiles": {
+    "cut_points_pct": [
+      51.7,
+      63.5,
+      76.1
+    ],
+    "groups": {
+      "Q1 (lowest)": {
+        "active_schools": 1110,
+        "complete_case_schools": 550,
+        "complete_case_rate_pct": 49.5,
+        "median_score": 40.5,
+        "top_quartile_share_pct": 4.9
+      },
+      "Q2": {
+        "active_schools": 1110,
+        "complete_case_schools": 563,
+        "complete_case_rate_pct": 50.7,
+        "median_score": 46.2,
+        "top_quartile_share_pct": 15.3
+      },
+      "Q3": {
+        "active_schools": 1105,
+        "complete_case_schools": 524,
+        "complete_case_rate_pct": 47.4,
+        "median_score": 52.9,
+        "top_quartile_share_pct": 30.5
+      },
+      "Q4 (highest)": {
+        "active_schools": 1102,
+        "complete_case_schools": 377,
+        "complete_case_rate_pct": 34.2,
+        "median_score": 62.1,
+        "top_quartile_share_pct": 61.0
+      }
+    },
+    "rank_movement": {
+      "Q1 (lowest)": {
+        "schools": 550,
+        "median_baseline_minus_academic_rank": -47.0
+      },
+      "Q2": {
+        "schools": 563,
+        "median_baseline_minus_academic_rank": 20.0
+      },
+      "Q3": {
+        "schools": 524,
+        "median_baseline_minus_academic_rank": 58.5
+      },
+      "Q4 (highest)": {
+        "schools": 377,
+        "median_baseline_minus_academic_rank": 2.0
+      }
+    },
+    "rank_movement_sign": "Negative means the baseline three-component rank is better than the academic-only rank."
+  },
+  "school_size": {
+    "cut_points_pupils": [
+      101.0,
+      198,
+      327.0
+    ],
+    "groups": {
+      "Q1 (lowest)": {
+        "active_schools": 1128,
+        "complete_case_schools": 76,
+        "complete_case_rate_pct": 6.7,
+        "median_score": 62.7,
+        "top_quartile_share_pct": 53.9
+      },
+      "Q2": {
+        "active_schools": 1131,
+        "complete_case_schools": 373,
+        "complete_case_rate_pct": 33.0,
+        "median_score": 45.2,
+        "top_quartile_share_pct": 20.1
+      },
+      "Q3": {
+        "active_schools": 1129,
+        "complete_case_schools": 756,
+        "complete_case_rate_pct": 67.0,
+        "median_score": 48.6,
+        "top_quartile_share_pct": 22.4
+      },
+      "Q4 (highest)": {
+        "active_schools": 1119,
+        "complete_case_schools": 810,
+        "complete_case_rate_pct": 72.4,
+        "median_score": 50.5,
+        "top_quartile_share_pct": 27.0
+      }
+    }
+  },
+  "organizer_type": {
+    "Enskild": {
+      "active_schools": 820,
+      "complete_case_schools": 186,
+      "complete_case_rate_pct": 22.7,
+      "median_score": 53.6,
+      "top_quartile_share_pct": 37.1
+    },
+    "Kommunal": {
+      "active_schools": 3803,
+      "complete_case_schools": 1829,
+      "complete_case_rate_pct": 48.1,
+      "median_score": 48.7,
+      "top_quartile_share_pct": 23.8
+    },
+    "Region": {
+      "active_schools": 1,
+      "complete_case_schools": 0,
+      "complete_case_rate_pct": 0.0,
+      "median_score": null,
+      "top_quartile_share_pct": null
+    }
+  },
+  "grade_configuration": {
+    "grades 1–6": {
+      "active_schools": 2825,
+      "complete_case_schools": 1019,
+      "complete_case_rate_pct": 36.1,
+      "median_score": 50.9,
+      "top_quartile_share_pct": 29.9
+    },
+    "grades 1–9": {
+      "active_schools": 872,
+      "complete_case_schools": 384,
+      "complete_case_rate_pct": 44.0,
+      "median_score": 49.3,
+      "top_quartile_share_pct": 21.9
+    },
+    "grades 7–9": {
+      "active_schools": 568,
+      "complete_case_schools": 429,
+      "complete_case_rate_pct": 75.5,
+      "median_score": 46.9,
+      "top_quartile_share_pct": 17.9
+    },
+    "mixed/other": {
+      "active_schools": 359,
+      "complete_case_schools": 183,
+      "complete_case_rate_pct": 51.0,
+      "median_score": 48.3,
+      "top_quartile_share_pct": 20.8
+    }
+  },
+  "limitations": [
+    "This is an observational sensitivity diagnostic using latest available values, not the proposed multi-year score implementation.",
+    "No SALSA bulk series was available, so with/without-SALSA sensitivity remains unresolved.",
+    "Correlations do not establish causality or fairness; they flag where deeper review is required.",
+    "Current offered grades may differ from the grades offered in an observation year.",
+    "Suppression, response selection, cohort size, and uncertainty require further model-specific review."
+  ],
+  "inputs": [
+    {
+      "name": "school-units.xlsx",
+      "sha256": "0392a9ecb0bca0638e368f63a60741108fab82d81f326edd5aaaaefb87f74038"
+    },
+    {
+      "name": "grundskola-metrics.json",
+      "sha256": "0e292078e10822e5b7200f62062b14fba12731813fea4abe91e2440bccaf70d5"
+    }
+  ]
+}

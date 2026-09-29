@@ -6,10 +6,13 @@
 build/
 dist/
 .build/
+.next/
+*.tsbuildinfo
 DerivedData/
 
 # Dependency folders
 node_modules/
+.cache/
 
 # Local environment
 .env
