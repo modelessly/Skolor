@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { Alert, Box, Button, Chip, Link, Paper, Stack, TextField, Typography } from "@mui/material";
 import type { DiscoveryResponse } from "@/features/discovery/types";
+import { useI18n } from "@/i18n/translations";
 
 const grades = ["F", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 export function DiscoveryForm() {
+  const { t } = useI18n();
   const [address, setAddress] = useState("");
   const [grade, setGrade] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -14,8 +16,8 @@ export function DiscoveryForm() {
   const [searching, setSearching] = useState(false);
 
   const canSearch = address.trim().length > 0 && grade !== null;
-  const addressError = submitted && !address.trim() ? "Enter a home address." : undefined;
-  const gradeError = submitted && !grade ? "Select the required grade." : undefined;
+  const addressError = submitted && !address.trim() ? t("validationAddress") : undefined;
+  const gradeError = submitted && !grade ? t("validationGrade") : undefined;
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -38,13 +40,13 @@ export function DiscoveryForm() {
   }
 
   return (
-    <Paper component="form" aria-label="Find nearby schools" elevation={1} onSubmit={submit} sx={{ p: { xs: 2, md: 4 }, maxWidth: 900 }}>
+    <Paper component="form" aria-label={t("discoveryHeading")} elevation={1} onSubmit={submit} sx={{ p: { xs: 2, md: 4 }, maxWidth: 900 }}>
       <Stack spacing={3}>
         <TextField
           fullWidth
-          label="Home address"
+          label={t("homeAddress")}
           placeholder="Knektedalsgatan 2B, Göteborg"
-          helperText={addressError ?? "Sent to Geoapify only when you select Find schools; it is not stored by Schools."}
+          helperText={addressError ?? t("addressHelper")}
           error={Boolean(addressError)}
           value={address}
           onChange={(event) => setAddress(event.target.value)}
@@ -52,7 +54,7 @@ export function DiscoveryForm() {
         />
         <Box>
           <Typography component="h2" variant="subtitle1" sx={{ mb: 1.5, fontWeight: 650 }}>
-            Required grade
+            {t("grade")}
           </Typography>
           <Stack direction="row" useFlexGap sx={{ flexWrap: "wrap", gap: 1 }}>
             {grades.map((item) => (
@@ -72,16 +74,16 @@ export function DiscoveryForm() {
         </Box>
         <Box>
           <Button type="submit" variant="contained" size="large" disabled={searching}>
-            {searching ? "Finding schools…" : "Find schools"}
+            {searching ? t("findingSchools") : t("findSchools")}
           </Button>
         </Box>
         <Typography variant="caption" color="text.secondary">
-          Address lookup powered by <Link href="https://www.geoapify.com/" target="_blank" rel="noreferrer">Geoapify</Link>.
+          {t("geoAttribution")} <Link href="https://www.geoapify.com/" target="_blank" rel="noreferrer">Geoapify</Link>.
         </Typography>
         {result?.error && <Alert severity="error">{result.error}</Alert>}
         {result?.location && (
           <Alert severity="success">
-            Address found: {result.location.label}. Searching for {grade === "F" ? "förskoleklass" : `grade ${grade}`} schools is ready.
+            {t("addressFound")} {result.location.label}. {t("schoolSearchReady").replace("{grade}", grade === "F" ? "förskoleklass" : `grade ${grade}`)}
           </Alert>
         )}
         {result?.warning && <Alert severity="info">{result.warning}</Alert>}

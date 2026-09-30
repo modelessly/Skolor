@@ -1,4 +1,4 @@
-# Schools
+# Skolor
 
 Research-stage foundation for a transparent Swedish compulsory-school discovery and comparison product. Product intent lives in `PRODUCT.md`; the Phase 0 evidence base is in `docs/data-sources.md`, `docs/data-model.md`, `docs/scoring-methodology.md`, and `docs/research-findings.md`.
 

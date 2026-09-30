@@ -1,8 +1,8 @@
-# Schools — Product Brief
+# Skolor — Product Brief
 
 ## Product Name
 
-Schools (working name)
+Skolor
 
 ## One-Sentence Description
 
